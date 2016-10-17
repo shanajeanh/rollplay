@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 gem 'pg', '~> 0.18'
 gem 'sass-rails', '~> 5.0'
@@ -14,13 +13,14 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'launchy'
+  gem 'factory_girl_rails'
   gem 'factory_girl'
   gem 'valid_attribute'
+  gem 'dotenv-rails'
+  gem 'listen', '~> 3.0.5'
   gem 'shoulda-matchers', require: false
 end
-
 group :test do
-  gem 'launchy', require: false
   gem 'coveralls', require: false
   gem 'database_cleaner'
 end
