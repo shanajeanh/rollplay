@@ -119,20 +119,29 @@ feature 'user can create new characters' do
 
     scenario 'a user receives error messages if character has no name' do
       visit new_character_path
+      fill_in 'Race', with: 'Togruta'
+      fill_in 'Class', with: 'Jedi'
+      click_button 'Save Sheet'
 
-
+      expect(page).to have_content "Name can't be blank"
     end
 
     scenario 'a user receives error messages if character has no race' do
       visit new_character_path
+      fill_in 'Name', with: 'Ahsoka Tano'
+      fill_in 'Class', with: 'Jedi'
+      click_button 'Save Sheet'
 
-
+      expect(page).to have_content "Character race can't be blank"
     end
 
     scenario 'a user receives error messages if character has no class' do
       visit new_character_path
+      fill_in 'Name', with: 'Ahsoka Tano'
+      fill_in 'Race', with: 'Togruta'
+      click_button 'Save Sheet'
 
-
+      expect(page).to have_content "Character class can't be blank"
     end
   end
 end
