@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161018163326) do
+ActiveRecord::Schema.define(version: 20161018175932) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,12 @@ ActiveRecord::Schema.define(version: 20161018163326) do
     t.integer  "int",             default: 10
     t.integer  "wis",             default: 10
     t.integer  "cha",             default: 10
+    t.integer  "speed",           default: 30
+    t.integer  "hp"
+    t.integer  "fort",            default: 0
+    t.integer  "ref",             default: 0
+    t.integer  "will",            default: 0
+    t.integer  "bab",             default: 0
   end
 
 end

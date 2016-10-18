@@ -40,7 +40,7 @@ feature 'User views a list of their characters' do
     scenario 'character saves are displayed' do
       visit character_path(character)
 
-      expect(page).to have_content 'Fort: 2'
+      expect(page).to have_content 'Fort: 0'
       expect(page).to have_content 'Ref: 5'
       expect(page).to have_content 'Will: 2'
     end
@@ -49,7 +49,7 @@ feature 'User views a list of their characters' do
       visit character_path(character)
 
       expect(page).to have_content 'Melee: 2'
-      expect(page).to have_content 'Range: 5'
+      expect(page).to have_content 'Ranged: 5'
       expect(page).to have_content 'CMB: 2'
     end
   end

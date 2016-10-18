@@ -14,5 +14,10 @@ FactoryGirl.define do
     int 17
     wis 9
     cha 13
+    hp 25
+    fort 0
+    ref 3
+    will 3
+    bab 3
   end
 end
