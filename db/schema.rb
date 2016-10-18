@@ -10,18 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161018002151) do
+ActiveRecord::Schema.define(version: 20161018175932) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "characters", force: :cascade do |t|
-    t.string   "name",            null: false
-    t.string   "character_class", null: false
-    t.string   "character_race",  null: false
+    t.string   "name",                               null: false
+    t.string   "character_class",                    null: false
+    t.string   "character_race",                     null: false
     t.text     "description"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.integer  "level"
+    t.text     "appearance"
+    t.string   "alignment"
+    t.string   "deity"
+    t.string   "size",            default: "Medium"
+    t.integer  "str",             default: 10
+    t.integer  "dex",             default: 10
+    t.integer  "con",             default: 10
+    t.integer  "int",             default: 10
+    t.integer  "wis",             default: 10
+    t.integer  "cha",             default: 10
+    t.integer  "speed",           default: 30
+    t.integer  "hp"
+    t.integer  "fort",            default: 0
+    t.integer  "ref",             default: 0
+    t.integer  "will",            default: 0
+    t.integer  "bab",             default: 0
   end
 
 end

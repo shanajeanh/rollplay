@@ -1,0 +1,63 @@
+<%= form_for @character do |f| %>
+<%= f.label :name %>
+<%= f.text_field :name %>
+
+<%= f.label :character_class, "Class" %>
+<%= f.text_field :character_class %>
+
+<%= f.label :character_race, "Race" %>
+<%= f.text_field :character_race %>
+
+<%= f.label :description %>
+<%= f.text_area :description %>
+
+<%= f.label :level %>
+<%= f.text_field :level %>
+
+<%= f.label :appearance %>
+<%= f.text_area :appearance %>
+
+<%= f.label :alignment %>
+<%= f.text_field :alignment %>
+
+<%= f.label :deity %>
+<%= f.text_field :deity %>
+
+<%= f.label :speed %>
+<%= f.text_field :speed %>
+
+<%= f.label :str, "Strength" %>
+<%= f.text_field :str %>
+
+<%= f.label :dex, "Dexterity" %>
+<%= f.text_field :dex %>
+
+<%= f.label :con, "Constitution" %>
+<%= f.text_field :con %>
+
+<%= f.label :int, "Intelligence" %>
+<%= f.text_field :int %>
+
+<%= f.label :wis, "Wisdom" %>
+<%= f.text_field :wis %>
+
+<%= f.label :cha, "Charisma" %>
+<%= f.text_field :cha %>
+
+<%= f.label :hp, "Hit Points" %>
+<%= f.text_field :hp %>
+
+<%= f.label :fort, "Fortitude Save" %>
+<%= f.text_field :fort %>
+
+<%= f.label :ref, "Reflex Save" %>
+<%= f.text_field :ref %>
+
+<%= f.label :will, "Will Save" %>
+<%= f.text_field :will %>
+
+<%= f.label :bab, "Base Attack Bonus" %>
+<%= f.text_field :bab %>
+
+<%= f.submit "Save Sheet" %>
+<% end %>
