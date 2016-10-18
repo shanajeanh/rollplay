@@ -1,6 +1,4 @@
 require 'coveralls'
-require 'support/user_sign_in_helper'
-
 Coveralls.wear!('rails')
 
 RSpec.configure do |config|
