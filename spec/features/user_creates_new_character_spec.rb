@@ -26,7 +26,8 @@ feature 'user can create new characters' do
       fill_in 'Name', with: 'Bonnibel Bubblegum'
       fill_in 'Class', with: 'Princess'
       fill_in 'Race', with: 'Bubblegum construct'
-      fill_in 'Description', with: 'She rules the Candy Kingdom with an iron fist'
+      fill_in 'Description', with: 'She rules the Candy Kingdom with an iron
+        fist'
       fill_in 'Level', with: 9
       fill_in 'Appearance', with: 'Completely pink and made out of candy'
       fill_in 'Alignment', with: 'LG'
@@ -48,7 +49,8 @@ feature 'user can create new characters' do
       expect(page).to have_content 'Character added successfully'
       expect(page).to have_content 'Bonnibel Bubblegum'
       expect(page).to have_content 'HP: 52'
-      expect(page).to have_content 'She rules the Candy Kingdom with an iron fist'
+      expect(page).to have_content 'She rules the Candy Kingdom with an iron
+        fist'
       expect(page).to have_content 'Level: 9'
       expect(page).to have_content 'Completely pink and made out of candy'
       expect(page).to have_content 'Alignment: LG'
@@ -61,7 +63,8 @@ feature 'user can create new characters' do
       fill_in 'Name', with: 'Bonnibel Bubblegum'
       fill_in 'Class', with: 'Princess'
       fill_in 'Race', with: 'Bubblegum construct'
-      fill_in 'Description', with: 'She rules the Candy Kingdom with an iron fist'
+      fill_in 'Description', with: 'She rules the Candy Kingdom with an iron
+        fist'
       fill_in 'Level', with: 9
       fill_in 'Appearance', with: 'Completely pink and made out of candy'
       fill_in 'Alignment', with: 'LG'

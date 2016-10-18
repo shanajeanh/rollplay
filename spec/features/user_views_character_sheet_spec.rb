@@ -11,7 +11,8 @@ feature 'User views a list of their characters' do
       expect(page).to have_content 'Race: Human'
       expect(page).to have_content 'Class: Reporter'
       expect(page).to have_content 'Level: 5'
-      expect(page).to have_content 'Appearance: Short black hair, sunglasses, creepy zombie eyes'
+      expect(page).to have_content 'Appearance: Short black hair, sunglasses,
+        creepy zombie eyes'
       expect(page).to have_content 'Alignment: NG'
       expect(page).to have_content 'Deity: The News'
       expect(page).to have_content 'Size: Medium'
