@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161018151646) do
+ActiveRecord::Schema.define(version: 20161018163326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,12 @@ ActiveRecord::Schema.define(version: 20161018151646) do
     t.string   "alignment"
     t.string   "deity"
     t.string   "size",            default: "Medium"
+    t.integer  "str",             default: 10
+    t.integer  "dex",             default: 10
+    t.integer  "con",             default: 10
+    t.integer  "int",             default: 10
+    t.integer  "wis",             default: 10
+    t.integer  "cha",             default: 10
   end
 
 end

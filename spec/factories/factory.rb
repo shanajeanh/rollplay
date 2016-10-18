@@ -8,5 +8,11 @@ FactoryGirl.define do
     appearance 'Short black hair, sunglasses, creepy zombie eyes'
     alignment 'NG'
     deity 'The News'
+    str 8
+    dex 14
+    con 10
+    int 17
+    wis 9
+    cha 13
   end
 end
