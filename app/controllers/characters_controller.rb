@@ -6,6 +6,7 @@ class CharactersController < ApplicationController
 
   def show
     @character = Character.find(params[:id])
+    @skills = Skill.all
   end
 
   def new

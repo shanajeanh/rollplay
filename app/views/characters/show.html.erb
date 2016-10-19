@@ -27,3 +27,9 @@
   <p>Ranged: <%= @character.dex_mod + @character.bab %></p>
   <p>CMB: <%= @character.str_mod + @character.bab %></p>
 </div>
+
+<div class="skills">
+  <% @skills.each do |skill| %>
+    <%= skill.name %> | <%= skill.ability %> | <%= skill.rank.ranks_added + skill.rank.ability_mod %>
+  <% end %>
+</div>
