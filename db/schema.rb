@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161018175932) do
+ActiveRecord::Schema.define(version: 20161019201907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,33 @@ ActiveRecord::Schema.define(version: 20161018175932) do
     t.integer  "ref",             default: 0
     t.integer  "will",            default: 0
     t.integer  "bab",             default: 0
+    t.integer  "user_id"
+  end
+
+  create_table "ranks", force: :cascade do |t|
+    t.boolean "class_skill",  default: false
+    t.integer "added_ranks"
+    t.integer "character_id",                 null: false
+    t.integer "skill_id",                     null: false
+    t.index ["character_id"], name: "index_ranks_on_character_id", using: :btree
+    t.index ["skill_id"], name: "index_ranks_on_skill_id", using: :btree
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.string "name",    null: false
+    t.string "ability", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "email"
+    t.datetime "last_signed_in_at"
+    t.string   "username"
+    t.string   "oauth_uid"
+    t.integer  "sign_in_count",     default: 0
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.index ["oauth_uid"], name: "index_users_on_oauth_uid", unique: true, using: :btree
+    t.index ["username"], name: "index_users_on_username", unique: true, using: :btree
   end
 
 end

@@ -1,4 +1,7 @@
 class Character < ActiveRecord::Base
+  has_many :ranks
+  has_many :skills, through: :ranks
+
   validates :name, presence: true
   validates :character_class, presence: true
   validates :character_race, presence: true
