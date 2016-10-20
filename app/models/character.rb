@@ -36,12 +36,12 @@ class Character < ActiveRecord::Base
 
   def abilities
     {
-      str: str_mod,
-      dex: dex_mod,
-      con: con_mod,
-      int: int_mod,
-      wis: wis_mod,
-      cha: cha_mod
+      'Str' => str_mod,
+      'Dex' => dex_mod,
+      'Con' => con_mod,
+      'Int' => int_mod,
+      'Wis' => wis_mod,
+      'Cha' => cha_mod
     }
   end
 end

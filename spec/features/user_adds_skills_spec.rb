@@ -5,7 +5,8 @@ feature 'user can add skills to their character' do
   let!(:character) { rank.character }
   let!(:skill) { rank.skill }
   let!(:skill2) { FactoryGirl.create(:skill, name: 'Bluff', ability: 'Cha') }
-  let!(:rank2) { FactoryGirl.create(:rank, skill: skill2, added_ranks: 2, class_skill: false) }
+  let!(:skill3) { FactoryGirl.create(:skill, name: 'Handle Animal', ability: 'Cha')}
+  let!(:rank2) { FactoryGirl.create(:rank, skill: skill2, character: character, added_ranks: 2, class_skill: false) }
   context 'as a user' do
     scenario 'a user can view skills on their character sheet' do
       visit character_path(character)
@@ -17,8 +18,14 @@ feature 'user can add skills to their character' do
     scenario 'the app is adding up skills and ranks accurately' do
       visit character_path(character)
 
-      expect(page).to have_content 'Craft (Writing) | Int | 16'
+      expect(page).to have_content 'Craft (writing) | Int | 16'
       expect(page).to have_content 'Bluff | Cha | 3'
+    end
+
+    scenario 'skills that the character has no ranks in are there' do
+      visit character_path(character)
+
+      expect(page).to have_content 'Handle Animal | Cha | 1'
     end
   end
 end

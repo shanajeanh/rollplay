@@ -4,4 +4,8 @@ class Skill < ActiveRecord::Base
 
   validates :name, presence: true
   validates :ability, presence: true
+
+  def ability_mod(character)
+    character.abilities[ability]
+  end
 end
