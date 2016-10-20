@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 feature 'user can create new characters' do
+  # let!(:skill) { FactoryGirl.create(:skill) }
+  # let!(:skill2) { FactoryGirl.create(:skill, name: 'Use Computer', ability: 'Int') }
+  # let!(:skill3) { FactoryGirl.create(:skill, name: 'Disguise', ability: 'Cha') }
   context 'as a user' do
     scenario 'there is a link to the new character page' do
       visit root_path

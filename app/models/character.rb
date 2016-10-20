@@ -44,4 +44,8 @@ class Character < ActiveRecord::Base
       'Cha' => cha_mod
     }
   end
+
+  def rank(skill)
+    Rank.find_by(skill: skill, character: self)
+  end
 end

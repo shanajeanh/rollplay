@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'user can add skills to their character' do
+feature 'user can view character skills' do
   let!(:rank) { FactoryGirl.create(:rank) }
   let!(:character) { rank.character }
   let!(:skill) { rank.skill }

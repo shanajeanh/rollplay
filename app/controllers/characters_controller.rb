@@ -11,16 +11,36 @@ class CharactersController < ApplicationController
 
   def new
     @character = Character.new
+    @skills = Skill.all
   end
 
   def create
     @character = Character.new(character_params)
+    # skills = Skill.where(id: params[:character][:skill_ids])
+    # skills.each do |s|
+    #   Rank.create(character: @character, skill: s, class_skill: true)
+    # end
     if @character.save
       flash[:notice] = "Character added successfully"
       redirect_to @character
     else
       flash[:notice] = flash[:notice] = @character.errors.full_messages.join(", ")
       render :new
+    end
+  end
+
+  def edit
+    @character = Character.find(params[:id])
+  end
+
+  def update
+    @character = Character.find(params[:id])
+    if @character.update_attributes(character_params)
+      flash[:notice] = "Character edited successfully"
+      redirect_to @character
+    else
+      flash[:notice] = @character.errors.full_messages.join(', ')
+      render 'edit'
     end
   end
 
