@@ -19,5 +19,7 @@ FactoryGirl.define do
     ref 3
     will 3
     bab 3
+
+    user
   end
 end
