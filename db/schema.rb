@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20161020175617) do
-=======
 ActiveRecord::Schema.define(version: 20161021180835) do
->>>>>>> 11d0905780d6103dbd6b12a270fc195cde243a4d
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,8 +39,7 @@ ActiveRecord::Schema.define(version: 20161021180835) do
     t.integer  "ref",             default: 0
     t.integer  "will",            default: 0
     t.integer  "bab",             default: 0
-<<<<<<< HEAD
-    t.integer  "user_id"
+    t.integer  "user_id",                            null: false
   end
 
   create_table "ranks", force: :cascade do |t|
@@ -62,20 +57,6 @@ ActiveRecord::Schema.define(version: 20161021180835) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email"
-    t.datetime "last_signed_in_at"
-    t.string   "username"
-    t.string   "oauth_uid"
-    t.integer  "sign_in_count",     default: 0
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-    t.index ["oauth_uid"], name: "index_users_on_oauth_uid", unique: true, using: :btree
-    t.index ["username"], name: "index_users_on_username", unique: true, using: :btree
-=======
-    t.integer  "user_id",                            null: false
-  end
-
-  create_table "users", force: :cascade do |t|
     t.string   "provider"
     t.string   "uid"
     t.string   "name"
@@ -83,7 +64,6 @@ ActiveRecord::Schema.define(version: 20161021180835) do
     t.datetime "oauth_expires_at"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
->>>>>>> 11d0905780d6103dbd6b12a270fc195cde243a4d
   end
 
 end
