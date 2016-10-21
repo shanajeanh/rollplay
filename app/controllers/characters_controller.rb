@@ -1,7 +1,9 @@
 class CharactersController < ApplicationController
 
   def index
-    @characters = Character.all
+    if logged_in?
+      @characters = current_user.characters
+    end
   end
 
   def show
