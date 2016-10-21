@@ -22,14 +22,15 @@
     <p>HP: <%= @character.hp %> AC: <%= @character.dex_mod + 10 %> Init: <%= @character.dex_mod %></p>
   </div>
   <div class="saves">
-    <p>Fort: <%= @character.con_mod + @character.fort %></p>
-    <p>Ref: <%= @character.dex_mod + @character.ref %></p>
-    <p>Will: <%= @character.wis_mod + @character.will %></p>
+    <div>Fort: <%= @character.con_mod + @character.fort %></div>
+    <div>Ref: <%= @character.dex_mod + @character.ref %></div>
+    <div>Will: <%= @character.wis_mod + @character.will %></div>
   </div>
+  <br \>
   <div class="attack">
-    <p>Melee: <%= @character.str_mod + @character.bab %></p>
-    <p>Ranged: <%= @character.dex_mod + @character.bab %></p>
-    <p>CMB: <%= @character.str_mod + @character.bab %></p>
+    <div>Melee: <%= @character.str_mod + @character.bab %></div>
+    <div>Ranged: <%= @character.dex_mod + @character.bab %></div>
+    <div>CMB: <%= @character.str_mod + @character.bab %></div>
   </div>
   <%= link_to 'Edit', edit_character_path(@character) %>
 </div>
@@ -49,7 +50,7 @@
     <% total = ranks + ability + class_bonus %>
     <div id="total<%= skill.id %>">
       <%= skill.name %> | <%= skill.ability %> | <%= total %>
-      Ranks: <input type="text" onChange = "addRanks()"  id="<%= skill.id %>" />
     </div>
   <% end %>
+  <%= link_to "Update Skills", edit_character_ranks(@character) %>
 </div>
