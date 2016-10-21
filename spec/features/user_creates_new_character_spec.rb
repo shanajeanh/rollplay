@@ -4,14 +4,32 @@ feature 'user can create new characters' do
   # let!(:skill) { FactoryGirl.create(:skill) }
   # let!(:skill2) { FactoryGirl.create(:skill, name: 'Use Computer', ability: 'Int') }
   # let!(:skill3) { FactoryGirl.create(:skill, name: 'Disguise', ability: 'Cha') }
-  context 'as a user' do
+  let!(:user) { FactoryGirl.create(:user) }
+  context 'as a logged out user' do
+    scenario 'clicking on the new character link tells me to sign in' do
+      visit root_path
+      click_link 'Create a Character Sheet'
+
+      expect(page).to have_content "You need to sign in before continuing."
+    end
+
+    scenario 'navigating directly to the create character page fails' do
+      visit new_character_path
+
+      expect(page).to have_content "You need to sign in before continuing."
+    end
+  end
+
+  context 'as a logged in user' do
     scenario 'there is a link to the new character page' do
+      login_with_google
       visit root_path
       click_link 'Create a Character Sheet'
 
       expect(current_path).to eq(new_character_path)
     end
     scenario 'a user can create a new character with just name, race, class' do
+      login_with_google
       visit new_character_path
       fill_in 'Name', with: 'Ahsoka Tano'
       fill_in 'Race', with: 'Togruta'
@@ -25,6 +43,7 @@ feature 'user can create new characters' do
     end
 
     scenario 'a user can also add other information' do
+      login_with_google
       visit new_character_path
       fill_in 'Name', with: 'Bonnibel Bubblegum'
       fill_in 'Class', with: 'Princess'
@@ -62,6 +81,7 @@ feature 'user can create new characters' do
     end
 
     scenario 'the sheet calculates stats based on ability input' do
+      login_with_google
       visit new_character_path
       fill_in 'Name', with: 'Bonnibel Bubblegum'
       fill_in 'Class', with: 'Princess'
@@ -90,6 +110,7 @@ feature 'user can create new characters' do
     end
 
     scenario 'the sheet calculates attacks, saves, defence, hp, and init' do
+      login_with_google
       visit new_character_path
       fill_in 'Name', with: 'Bonnibel Bubblegum'
       fill_in 'Class', with: 'Princess'
@@ -124,6 +145,7 @@ feature 'user can create new characters' do
     end
 
     scenario 'a user receives error messages if character has no name' do
+      login_with_google
       visit new_character_path
       fill_in 'Race', with: 'Togruta'
       fill_in 'Class', with: 'Jedi'
@@ -133,6 +155,7 @@ feature 'user can create new characters' do
     end
 
     scenario 'a user receives error messages if character has no race' do
+      login_with_google
       visit new_character_path
       fill_in 'Name', with: 'Ahsoka Tano'
       fill_in 'Class', with: 'Jedi'
@@ -142,6 +165,7 @@ feature 'user can create new characters' do
     end
 
     scenario 'a user receives error messages if character has no class' do
+      login_with_google
       visit new_character_path
       fill_in 'Name', with: 'Ahsoka Tano'
       fill_in 'Race', with: 'Togruta'

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'User views a list of their characters' do
+feature 'User views character sheet' do
   let!(:character) { FactoryGirl.create(:character) }
   context 'as a user' do
     scenario 'character basic descriptive info is visible' do
