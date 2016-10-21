@@ -1,7 +1,9 @@
 class CharactersController < ApplicationController
 
   def index
-    @characters = Character.all
+    if logged_in?
+      @characters = current_user.characters
+    end
   end
 
   def show
@@ -9,11 +11,14 @@ class CharactersController < ApplicationController
   end
 
   def new
+    authenticate_user!
     @character = Character.new
   end
 
   def create
+    authenticate_user!
     @character = Character.new(character_params)
+    @character.user = current_user
     if @character.save
       flash[:notice] = "Character added successfully"
       redirect_to @character
