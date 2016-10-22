@@ -37,20 +37,16 @@
 <div class="skills">
   <h3>Skills</h3>
   <% @skills.each do |skill| %>
-    <% rank = @character.ranks.find_by(skill: skill) %>
+    <% rank = @character.rank(skill) %>
     <% class_bonus = 0 %>
-    <% ranks = 0 %>
     <% ability = skill.ability_mod(@character) %>
-    <% if rank %>
-      <% ranks = rank.added_ranks %>
-      <% if rank.class_skill && ranks > 0 %>
-        <% class_bonus = 3 %>
-      <% end %>
+    <% ranks = rank.added_ranks.to_i %>
+    <% if rank.class_skill && ranks > 0 %>
+      <% class_bonus = 3 %>
     <% end %>
     <% total = ranks + ability + class_bonus %>
     <div id="total<%= skill.id %>">
       <%= skill.name %> | <%= skill.ability %> | <%= total %>
     </div>
   <% end %>
-  <%= link_to "Update Skills", edit_character_ranks(@character) %>
 </div>

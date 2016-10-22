@@ -20,10 +20,6 @@ class CharactersController < ApplicationController
   def create
     authenticate_user!
     @character = Character.new(character_params)
-    # skills = Skill.where(id: params[:character][:skill_ids])
-    # skills.each do |s|
-    #   Rank.create(character: @character, skill: s, class_skill: true)
-    # end
     @character.user = current_user
     if @character.save
       flash[:notice] = "Character added successfully"

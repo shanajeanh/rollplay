@@ -47,6 +47,6 @@ class Character < ActiveRecord::Base
   end
 
   def rank(skill)
-    Rank.find_by(skill: skill, character: self)
+    Rank.find_or_create_by(skill: skill, character: self)
   end
 end
