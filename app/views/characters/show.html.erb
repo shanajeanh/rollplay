@@ -1,13 +1,13 @@
 <div class="character_info">
-  <div class="basic_info">
+  <div class="basic_info" align = "center">
     <h1><%= @character.name %></h1>
     <h3><%= @character.description %></h3>
     <p>Level: <%= @character.level %> Class: <%= @character.character_class %> Race: <%= @character.character_race %></p>
   </div>
-  <div class="physical_info">Speed: <%= @character.speed %> feet Size: <%= @character.size %> Appearance: <%= @character.appearance %></div>
-  <div class="religion_info">Alignment: <%= @character.alignment %> Deity: <%= @character.deity %></div>
+  <div class="physical_info" align = "right">Speed: <%= @character.speed %> feet Size: <%= @character.size %> Appearance: <%= @character.appearance %></div>
+  <div class="religion_info" align = "right">Alignment: <%= @character.alignment %> Deity: <%= @character.deity %></div>
 
-  <div class="ability_scores">
+  <div class="ability_scores" align = "left">
     <h3>Ability | Bonus</h3>
     <ul>
       <li>Str: <%= @character.str %> | <%= @character.str_mod %></li>
@@ -18,7 +18,7 @@
       <li>Cha: <%= @character.cha %> | <%= @character.cha_mod %></li>
     </ul>
   </div>
-  <div class="hp_def_init">
+  <div class="hp_def_init" align="center">
     <p>HP: <%= @character.hp %> AC: <%= @character.dex_mod + 10 %> Init: <%= @character.dex_mod %></p>
   </div>
   <div class="saves">
@@ -32,10 +32,10 @@
     <div>Ranged: <%= @character.dex_mod + @character.bab %></div>
     <div>CMB: <%= @character.str_mod + @character.bab %></div>
   </div>
-  <%= link_to 'Edit', edit_character_path(@character) %>
 </div>
+
 <div class="skills">
-  <h3>Skills</h3>
+  <h4>Skills</h4>
   <% @skills.each do |skill| %>
     <% rank = @character.rank(skill) %>
     <% class_bonus = 0 %>
@@ -49,4 +49,8 @@
       <%= skill.name %> | <%= skill.ability %> | <%= total %>
     </div>
   <% end %>
+</div>
+<div class="buttons">
+  <%= link_to 'Edit', edit_character_path(@character) %>
+  <%= link_to 'Delete', @character, method: :delete, data: { confirm: 'You sure?' }  %>
 </div>

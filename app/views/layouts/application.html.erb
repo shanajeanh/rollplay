@@ -14,20 +14,24 @@
   <body>
     <header>
       <div class="title-bar">
-        <h1><%= link_to "ROLLPLAY", root_path %></h1>
-      </div>
-      <div>
-        <% if current_user %>
-          Signed in as <strong><%= current_user.name %></strong>!
-          <%= link_to "Sign out", signout_path, id: "sign_out" %>
-        <% else %>
-          <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %>
-        <% end %>
-      </div>
-      <div>
-      <% flash.each do |key, value| %>
-        <%= value %>
-      <% end %>
+        <div class="title-bar-left">
+          <h3>
+            <%= link_to "ROLLPLAY", root_path %>
+          </h3>
+          <div class = "flash-notices">
+          <% flash.each do |key, value| %>
+            <%= value %>
+          <% end %>
+          </div>
+        </div>
+        <div class="title-bar-right">
+          <% if current_user %>
+            Signed in as <strong><%= current_user.name %></strong>!
+            <%= link_to "Sign out", signout_path, id: "sign_out" %>
+          <% else %>
+            <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %>
+          <% end %>
+        </div>
       </div>
     </header>
     <%= yield %>

@@ -2,6 +2,8 @@ class Character < ActiveRecord::Base
   belongs_to :user
   has_many :ranks
   has_many :skills, through: :ranks
+  accepts_nested_attributes_for :ranks
+
 
   validates :name, presence: true
   validates :character_class, presence: true
