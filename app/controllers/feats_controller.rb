@@ -20,12 +20,31 @@ class FeatsController < ApplicationController
   end
 
   def edit
+    authenticate_user!
+    @feat = Feat.find(params[:id])
+    @character = @feat.character
   end
 
   def update
+    authenticate_user!
+    @feat = Feat.find(params[:id])
+    @character = @feat.character
+    if @feat.update_attributes(feat_params)
+      flash[:notice] = 'Feat successfully edited'
+      redirect_to @character
+    else
+      flash[:notice] = @feat.errors.full_messages.join(', ')
+      redirect_to edit_character_feat_path(@character, @feat)
+    end
   end
 
   def destroy
+    authenticate_user!
+    feat = Review.find(params[:id])
+    @character = feat.character
+    feat.destroy
+    flash[:notice] = 'Feat successfully deleted'
+    redirect_to @character
   end
 
   private

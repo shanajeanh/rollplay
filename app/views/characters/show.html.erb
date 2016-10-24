@@ -61,6 +61,9 @@
     <div>Description: <%= feat.description %></div>
     <div>Benefit: <%= feat.benefit %></div>
     <div>Special: <%= feat.special %></div>
+    <% if @character.user == current_user %>
+      <%= button_to 'Edit Feat', edit_character_feat_path(@character, feat), method: :get %>
+    <% end %>
   <% end %>
 </div>
 
