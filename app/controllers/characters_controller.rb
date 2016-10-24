@@ -77,7 +77,13 @@ class CharactersController < ApplicationController
       :ref,
       :will,
       :bab,
-      ranks_attributes: [:id, :class_skill, :added_ranks, :skill_id, :character_id]
+      ranks_attributes: [
+        :id,
+        :class_skill,
+        :added_ranks,
+        :skill_id,
+        :character_id
+        ]
       )
   end
 end

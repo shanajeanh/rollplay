@@ -5,8 +5,10 @@ feature 'user can view character skills' do
   let!(:character) { rank.character }
   let!(:skill) { rank.skill }
   let!(:skill2) { FactoryGirl.create(:skill, name: 'Bluff', ability: 'Cha') }
-  let!(:skill3) { FactoryGirl.create(:skill, name: 'Handle Animal', ability: 'Cha')}
-  let!(:rank2) { FactoryGirl.create(:rank, skill: skill2, character: character, added_ranks: 2, class_skill: false) }
+  let!(:skill3) { FactoryGirl.create(:skill, name: 'Handle Animal',
+    ability: 'Cha')}
+  let!(:rank2) { FactoryGirl.create(:rank, skill: skill2, character: character,
+    added_ranks: 2, class_skill: false) }
   context('as a logged-on user') do
     scenario 'an authenticated user can edit their characters\'s skills' do
       login_with_google

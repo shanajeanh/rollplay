@@ -23,7 +23,7 @@ feature 'user can edit character sheets' do
       expect(page).to have_content 'Georgia Mason'
       expect(page).to have_content 'Race: Clone'
       expect(page).to have_content 'Appearance: No more zombie eyes'
-      expect(page).not_to have_content 'Short black hair, sunglasses, creepy zombie eyes'
+      expect(page).not_to have_content 'Short black hair, sunglasses'
       expect(page).to have_content 'Con: 9 | -1'
     end
   end
@@ -40,7 +40,7 @@ feature 'user can edit character sheets' do
       character = FactoryGirl.create(:character)
       visit edit_character_path(character)
 
-      expect(page).to have_content("You need to sign in before continuing.")
+      expect(page).to have_content('You need to sign in before continuing.')
     end
   end
 end

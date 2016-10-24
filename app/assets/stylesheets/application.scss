@@ -2,7 +2,7 @@
 // *= require_tree .
 // *= require_self
 // *= require foundation_and_overrides
-@import "colors";
+@import "./Colors";
 body {
   background-color: $beige;
   header {
