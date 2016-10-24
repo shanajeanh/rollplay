@@ -1,29 +1,58 @@
-<h1><%= @character.name %></h1>
-<h3><%= @character.description %></h3>
-<p>Level: <%= @character.level %> Class: <%= @character.character_class %> Race: <%= @character.character_race %></p>
-<div>Speed: <%= @character.speed %> feet Size: <%= @character.size %> Appearance: <%= @character.appearance %></div>
-<div>Alignment: <%= @character.alignment %> Deity: <%= @character.deity %></div>
+<div class="character_info">
+  <div class="basic_info" align = "center">
+    <h1><%= @character.name %></h1>
+    <h3><%= @character.description %></h3>
+    <p>Level: <%= @character.level %> Class: <%= @character.character_class %> Race: <%= @character.character_race %></p>
+  </div>
+  <div class="physical_info" align = "right">Speed: <%= @character.speed %> feet Size: <%= @character.size %> Appearance: <%= @character.appearance %></div>
+  <div class="religion_info" align = "right">Alignment: <%= @character.alignment %> Deity: <%= @character.deity %></div>
 
-<div class="ability_scores"> <h3>Ability | Bonus</h3>
-  <ul>
-    <li>Str: <%= @character.str %> | <%= @character.str_mod %></li>
-    <li>Dex: <%= @character.dex %> | <%= @character.dex_mod %></li>
-    <li>Con: <%= @character.con %> | <%= @character.con_mod %></li>
-    <li>Int: <%= @character.int %> | <%= @character.int_mod %></li>
-    <li>Wis: <%= @character.wis %> | <%= @character.wis_mod %></li>
-    <li>Cha: <%= @character.cha %> | <%= @character.cha_mod %></li>
-  </ul>
+  <div class="ability_scores" align = "left">
+    <h3>Ability | Bonus</h3>
+    <ul>
+      <li>Str: <%= @character.str %> | <%= @character.str_mod %></li>
+      <li>Dex: <%= @character.dex %> | <%= @character.dex_mod %></li>
+      <li>Con: <%= @character.con %> | <%= @character.con_mod %></li>
+      <li>Int: <%= @character.int %> | <%= @character.int_mod %></li>
+      <li>Wis: <%= @character.wis %> | <%= @character.wis_mod %></li>
+      <li>Cha: <%= @character.cha %> | <%= @character.cha_mod %></li>
+    </ul>
+  </div>
+  <div class="hp_def_init" align="center">
+    <p>HP: <%= @character.hp %> AC: <%= @character.dex_mod + 10 %> Init: <%= @character.dex_mod %></p>
+  </div>
+  <div class="saves">
+    <div>Fort: <%= @character.con_mod + @character.fort %></div>
+    <div>Ref: <%= @character.dex_mod + @character.ref %></div>
+    <div>Will: <%= @character.wis_mod + @character.will %></div>
+  </div>
+  <br \>
+  <div class="attack">
+    <div>Melee: <%= @character.str_mod + @character.bab %></div>
+    <div>Ranged: <%= @character.dex_mod + @character.bab %></div>
+    <div>CMB: <%= @character.str_mod + @character.bab %></div>
+  </div>
 </div>
-<div class="hp_def_init">
-  <p>HP: <%= @character.hp %> AC: <%= @character.dex_mod + 10 %> Init: <%= @character.dex_mod %></p>
+
+<div class="skills">
+  <h4>Skills</h4>
+  <% @skills.each do |skill| %>
+    <% rank = @character.rank(skill) %>
+    <% class_bonus = 0 %>
+    <% ability = skill.ability_mod(@character) %>
+    <% ranks = rank.added_ranks.to_i %>
+    <% if rank.class_skill && ranks > 0 %>
+      <% class_bonus = 3 %>
+    <% end %>
+    <% total = ranks + ability + class_bonus %>
+    <div id="total<%= skill.id %>">
+      <%= skill.name %> | <%= skill.ability %> | <%= total %>
+    </div>
+  <% end %>
 </div>
-<div class="saves">
-  <p>Fort: <%= @character.con_mod + @character.fort %></p>
-  <p>Ref: <%= @character.dex_mod + @character.ref %></p>
-  <p>Will: <%= @character.wis_mod + @character.will %></p>
-</div>
-<div class="attack">
-  <p>Melee: <%= @character.str_mod + @character.bab %></p>
-  <p>Ranged: <%= @character.dex_mod + @character.bab %></p>
-  <p>CMB: <%= @character.str_mod + @character.bab %></p>
-</div>
+<% if @character.user == current_user %>
+  <div class="buttons">
+    <%= link_to 'Edit', edit_character_path(@character) %>
+    <%= link_to 'Delete', @character, method: :delete, data: { confirm: 'You sure?' }  %>
+  </div>
+<% end %>

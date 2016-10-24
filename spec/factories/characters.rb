@@ -22,4 +22,17 @@ FactoryGirl.define do
 
     user
   end
+
+  factory :skill do
+    name 'Craft (writing)'
+    ability 'Int'
+  end
+
+  factory :rank do
+    added_ranks 10
+    class_skill true
+
+    character
+    skill
+  end
 end

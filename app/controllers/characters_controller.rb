@@ -8,6 +8,7 @@ class CharactersController < ApplicationController
 
   def show
     @character = Character.find(params[:id])
+    @skills = Skill.all
   end
 
   def new
@@ -20,12 +21,36 @@ class CharactersController < ApplicationController
     @character = Character.new(character_params)
     @character.user = current_user
     if @character.save
-      flash[:notice] = "Character added successfully"
+      flash[:notice] = 'Character added successfully'
       redirect_to @character
     else
-      flash[:notice] = flash[:notice] = @character.errors.full_messages.join(", ")
+      flash[:notice] = flash[:notice] = @character.errors.full_messages.join(', ')
       render :new
     end
+  end
+
+  def edit
+    authenticate_user!
+    @character = Character.find(params[:id])
+    @skills = @character.skills
+  end
+
+  def update
+    authenticate_user!
+    @character = Character.find(params[:id])
+    if @character.update_attributes(character_params)
+      flash[:notice] = 'Character edited successfully'
+      redirect_to @character
+    else
+      flash[:notice] = @character.errors.full_messages.join(', ')
+      render 'edit'
+    end
+  end
+
+  def destroy
+    Character.find(params[:id]).destroy
+    flash[:notice] = 'Character deleted'
+    redirect_to root_path
   end
 
   private
@@ -51,7 +76,14 @@ class CharactersController < ApplicationController
       :fort,
       :ref,
       :will,
-      :bab
+      :bab,
+      ranks_attributes: [
+        :id,
+        :class_skill,
+        :added_ranks,
+        :skill_id,
+        :character_id
+        ]
       )
   end
 end

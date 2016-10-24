@@ -7,7 +7,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'foundation-rails'
 gem 'font-awesome-sass'
-gem "omniauth-google-oauth2", "~> 0.2.1"
+gem "omniauth-google-oauth2", "~> 0.4.1"
+gem 'simple_form'
 
 group :development, :test do
   gem 'pry-rails'

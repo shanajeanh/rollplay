@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   root to: 'characters#index'
 
-  resources :characters
+  resources :characters do
+    resources :ranks
+  end
 
 end

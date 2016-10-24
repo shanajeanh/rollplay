@@ -1,6 +1,10 @@
 class Character < ActiveRecord::Base
   belongs_to :user
-  
+  has_many :ranks
+  has_many :skills, through: :ranks
+  accepts_nested_attributes_for :ranks
+
+
   validates :name, presence: true
   validates :character_class, presence: true
   validates :character_race, presence: true
@@ -31,5 +35,20 @@ class Character < ActiveRecord::Base
 
   def cha_mod
     mod(cha)
+  end
+
+  def abilities
+    {
+      'Str' => str_mod,
+      'Dex' => dex_mod,
+      'Con' => con_mod,
+      'Int' => int_mod,
+      'Wis' => wis_mod,
+      'Cha' => cha_mod
+    }
+  end
+
+  def rank(skill)
+    Rank.find_or_create_by(skill: skill, character: self)
   end
 end
