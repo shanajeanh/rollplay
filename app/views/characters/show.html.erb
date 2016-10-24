@@ -50,6 +50,20 @@
     </div>
   <% end %>
 </div>
+
+<div class="feats">
+  <h4>Feats</h4>
+  <% @feats.each do |feat| %>
+    <h5><%= feat.title %></h5>
+    <div>Type: <%= feat.feat_type %></div>
+    <div>Prerequisites: <%= feat.prerequisites %></div>
+    <div>Summary: <%= feat.summary %></div>
+    <div>Description: <%= feat.description %></div>
+    <div>Benefit: <%= feat.benefit %></div>
+    <div>Special: <%= feat.special %></div>
+  <% end %>
+</div>
+
 <% if @character.user == current_user %>
   <div class="buttons">
     <%= button_to 'Add a Feat', new_character_feat_path(@character), method: :get %>

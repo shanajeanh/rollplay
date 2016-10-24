@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'user can view feats' do
   let!(:feat) { FactoryGirl.create(:feat) }
   let!(:feat2) { FactoryGirl.create(:feat, title: 'Point Blank Shot') }
-  let!(:feat3) { FactoryGirll.create(:feat, title: 'Lame Feat for Losers', user: FactoryGirl.create(:user)) }
+  let!(:feat3) { FactoryGirl.create(:feat, title: 'Lame Feat for Losers', character: FactoryGirl.create(:character, name: 'Dumbface')) }
   let!(:character) { feat.character }
   context 'as a user' do
     scenario 'all feats are visible' do

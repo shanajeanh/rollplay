@@ -13,19 +13,18 @@ feature 'user can add feats' do
       click_button 'Save Feat'
 
       expect(page).to have_content 'Feat added successfully'
-      expect(page).to have_content 'Weapon finesse'
+      expect(page).to have_content 'Weapon Finesse'
     end
 
     scenario 'feats need a title, type, and summary' do
       login_with_google
       character = FactoryGirl.create(:character, user: User.first)
       visit new_character_feat_path(character)
-      click_button 'Add a Feat'
-      fill_in 'Full Description', with: 'I DO WHAT I WANT'
+      fill_in 'Description', with: 'I DO WHAT I WANT'
       click_button 'Save Feat'
 
       expect(page).to have_content 'Title can\'t be blank'
-      expect(page).to have_content 'Type can\'t be blank'
+      expect(page).to have_content 'Feat type can\'t be blank'
       expect(page).to have_content 'Summary can\'t be blank'
     end
 
@@ -57,7 +56,7 @@ feature 'user can add feats' do
     end
 
     scenario 'non-authenticated users cannot add in feats' do
-      character = FactoryGirl.create(:character, user: User.first)
+      character = FactoryGirl.create(:character)
       visit new_character_feat_path(character)
 
       expect(page).to have_content 'You need to sign in before continuing.'
