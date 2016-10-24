@@ -1,9 +1,6 @@
 require 'rails_helper'
 
 feature 'user can create new characters' do
-  # let!(:skill) { FactoryGirl.create(:skill) }
-  # let!(:skill2) { FactoryGirl.create(:skill, name: 'Use Computer', ability: 'Int') }
-  # let!(:skill3) { FactoryGirl.create(:skill, name: 'Disguise', ability: 'Cha') }
   let!(:user) { FactoryGirl.create(:user) }
   context 'as a logged out user' do
     scenario 'clicking on the new character link tells me to sign in' do

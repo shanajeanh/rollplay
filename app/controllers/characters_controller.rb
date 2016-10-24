@@ -30,10 +30,13 @@ class CharactersController < ApplicationController
   end
 
   def edit
+    authenticate_user!
     @character = Character.find(params[:id])
+    @skills = @character.skills
   end
 
   def update
+    authenticate_user!
     @character = Character.find(params[:id])
     if @character.update_attributes(character_params)
       flash[:notice] = "Character edited successfully"
@@ -42,6 +45,12 @@ class CharactersController < ApplicationController
       flash[:notice] = @character.errors.full_messages.join(', ')
       render 'edit'
     end
+  end
+
+  def destroy
+    Character.find(params[:id]).destroy
+    flash[:notice] = "Character deleted"
+    redirect_to root_path
   end
 
   private

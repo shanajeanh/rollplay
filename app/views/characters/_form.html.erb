@@ -64,8 +64,7 @@
       <%= ff.check_box :class_skill %>
       <%= ff.label :class_skill, ff.object.skill.name %>
       <%= ff.hidden_field :skill_id %>
-      <%= ff.label :added_ranks, "Ranks" %>
-      <%= ff.input :added_ranks %>
+      <%= ff.text_field :added_ranks %>
     </div>
   <% end %>
   <%= f.submit "Save Sheet" %>

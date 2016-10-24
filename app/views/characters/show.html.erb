@@ -50,7 +50,9 @@
     </div>
   <% end %>
 </div>
-<div class="buttons">
-  <%= link_to 'Edit', edit_character_path(@character) %>
-  <%= link_to 'Delete', @character, method: :delete, data: { confirm: 'You sure?' }  %>
-</div>
+<% if @character.user == current_user %>
+  <div class="buttons">
+    <%= link_to 'Edit', edit_character_path(@character) %>
+    <%= link_to 'Delete', @character, method: :delete, data: { confirm: 'You sure?' }  %>
+  </div>
+<% end %>
