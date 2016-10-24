@@ -14,10 +14,6 @@ class CharactersController < ApplicationController
   def new
     authenticate_user!
     @character = Character.new
-    @skills = Skill.all
-    @skills.each do |s|
-      @character.rank(s)
-    end
   end
 
   def create
@@ -72,7 +68,7 @@ class CharactersController < ApplicationController
       :ref,
       :will,
       :bab,
-      ranks_attributes: [:class_skill, :added_ranks]
+      ranks_attributes: [:id, :class_skill, :added_ranks, :skill_id, :character_id]
       )
   end
 end

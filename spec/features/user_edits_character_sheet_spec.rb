@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'user can edit character sheets' do
   let!(:character) { FactoryGirl.create(:character) }
-  context 'as a user' do
+  context 'as a logged-in user' do
     scenario 'there is a link to edit the sheet' do
       visit character_path(character)
       click_link 'Edit'
@@ -22,6 +22,20 @@ feature 'user can edit character sheets' do
       expect(page).to have_content 'Appearance: No more zombie eyes'
       expect(page).not_to have_content 'Short black hair, sunglasses, creepy zombie eyes'
       expect(page).to have_content 'Con: 9 | -1'
+    end
+  end
+
+  context 'as a logged-off user' do
+    scenario 'logged-off users have no edit link' do
+      visit character_path(character)
+
+      expect(page).not_to have_link('Edit')
+    end
+
+    scenario 'logged-off users cannot edit' do
+      visit edit_character_path(character)
+
+      expect(page).to have_content("You need to sign in before continuing.")
     end
   end
 end
