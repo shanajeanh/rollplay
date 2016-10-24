@@ -52,6 +52,7 @@
 </div>
 <% if @character.user == current_user %>
   <div class="buttons">
+    <%= button_to 'Add a Feat', new_character_feat_path(@character), method: :get %>
     <%= link_to 'Edit', edit_character_path(@character) %>
     <%= link_to 'Delete', @character, method: :delete, data: { confirm: 'You sure?' }  %>
   </div>

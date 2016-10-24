@@ -40,7 +40,7 @@ feature 'user can edit character sheets' do
       character = FactoryGirl.create(:character)
       visit edit_character_path(character)
 
-      expect(page).to have_content('You need to sign in before continuing.')
+      expect(page).to have_content 'You need to sign in before continuing.'
     end
   end
 end

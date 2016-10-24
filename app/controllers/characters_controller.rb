@@ -1,5 +1,4 @@
 class CharactersController < ApplicationController
-
   def index
     if logged_in?
       @characters = current_user.characters
@@ -9,6 +8,7 @@ class CharactersController < ApplicationController
   def show
     @character = Character.find(params[:id])
     @skills = Skill.all
+    @feats = @character.feats
   end
 
   def new

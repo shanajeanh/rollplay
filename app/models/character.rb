@@ -2,6 +2,7 @@ class Character < ActiveRecord::Base
   belongs_to :user
   has_many :ranks
   has_many :skills, through: :ranks
+  has_many :feats
   accepts_nested_attributes_for :ranks
 
 
