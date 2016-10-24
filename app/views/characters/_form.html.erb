@@ -1,71 +1,73 @@
-<%= simple_form_for @character do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <br \>
-  <%= f.label :character_class, "Class" %>
-  <%= f.text_field :character_class %>
-  <br \>
-  <%= f.label :character_race, "Race" %>
-  <%= f.text_field :character_race %>
-  <br \>
-  <%= f.label :description %>
-  <%= f.text_area :description %>
-  <br \>
-  <%= f.label :level %>
-  <%= f.text_field :level %>
-  <br \>
-  <%= f.label :appearance %>
-  <%= f.text_area :appearance %>
-  <br \>
-  <%= f.label :alignment %>
-  <%= f.text_field :alignment %>
-  <br \>
-  <%= f.label :deity %>
-  <%= f.text_field :deity %>
-  <br \>
-  <%= f.label :speed %>
-  <%= f.text_field :speed %>
-  <br \>
-  <%= f.label :str, "Strength" %>
-  <%= f.text_field :str %>
-  <br \>
-  <%= f.label :dex, "Dexterity" %>
-  <%= f.text_field :dex %>
-  <br \>
-  <%= f.label :con, "Constitution" %>
-  <%= f.text_field :con %>
-  <br \>
-  <%= f.label :int, "Intelligence" %>
-  <%= f.text_field :int %>
-  <br \>
-  <%= f.label :wis, "Wisdom" %>
-  <%= f.text_field :wis %>
-  <br \>
-  <%= f.label :cha, "Charisma" %>
-  <%= f.text_field :cha %>
-  <br \>
-  <%= f.label :hp, "Hit Points" %>
-  <%= f.text_field :hp %>
-  <br \>
-  <%= f.label :fort, "Fortitude Save" %>
-  <%= f.text_field :fort %>
-  <br \>
-  <%= f.label :ref, "Reflex Save" %>
-  <%= f.text_field :ref %>
-  <br \>
-  <%= f.label :will, "Will Save" %>
-  <%= f.text_field :will %>
-  <br \>
-  <%= f.label :bab, "Base Attack Bonus" %>
-  <%= f.text_field :bab %>
-  <br \>
-  <%= f.fields_for :ranks do |ff| %>
-    <div class="skills_form">
-      <%= ff.check_box :class_skill %>
-      <%= ff.label :class_skill, ff.object.skill.name %>
-      <%= ff.hidden_field :skill_id %>
-      <%= ff.text_field :added_ranks %>
-    </div>
+<div class="form">
+  <%= simple_form_for @character do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <br \>
+    <%= f.label :character_class, "Class" %>
+    <%= f.text_field :character_class %>
+    <br \>
+    <%= f.label :character_race, "Race" %>
+    <%= f.text_field :character_race %>
+    <br \>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+    <br \>
+    <%= f.label :level %>
+    <%= f.text_field :level %>
+    <br \>
+    <%= f.label :appearance %>
+    <%= f.text_area :appearance %>
+    <br \>
+    <%= f.label :alignment %>
+    <%= f.text_field :alignment %>
+    <br \>
+    <%= f.label :deity %>
+    <%= f.text_field :deity %>
+    <br \>
+    <%= f.label :speed %>
+    <%= f.text_field :speed %>
+    <br \>
+    <%= f.label :str, "Strength" %>
+    <%= f.text_field :str %>
+    <br \>
+    <%= f.label :dex, "Dexterity" %>
+    <%= f.text_field :dex %>
+    <br \>
+    <%= f.label :con, "Constitution" %>
+    <%= f.text_field :con %>
+    <br \>
+    <%= f.label :int, "Intelligence" %>
+    <%= f.text_field :int %>
+    <br \>
+    <%= f.label :wis, "Wisdom" %>
+    <%= f.text_field :wis %>
+    <br \>
+    <%= f.label :cha, "Charisma" %>
+    <%= f.text_field :cha %>
+    <br \>
+    <%= f.label :hp, "Hit Points" %>
+    <%= f.text_field :hp %>
+    <br \>
+    <%= f.label :fort, "Fortitude Save" %>
+    <%= f.text_field :fort %>
+    <br \>
+    <%= f.label :ref, "Reflex Save" %>
+    <%= f.text_field :ref %>
+    <br \>
+    <%= f.label :will, "Will Save" %>
+    <%= f.text_field :will %>
+    <br \>
+    <%= f.label :bab, "Base Attack Bonus" %>
+    <%= f.text_field :bab %>
+    <br \>
+    <%= f.fields_for :ranks do |ff| %>
+      <div class="skills_form">
+        <%= ff.check_box :class_skill %>
+        <%= ff.label :class_skill, ff.object.skill.name %>
+        <%= ff.hidden_field :skill_id %>
+        <%= ff.text_field :added_ranks %>
+      </div>
+    <% end %>
+    <%= f.submit "Save Sheet" %>
   <% end %>
-  <%= f.submit "Save Sheet" %>
-<% end %>
+</div>
