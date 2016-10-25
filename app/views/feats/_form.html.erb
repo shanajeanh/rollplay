@@ -1,0 +1,10 @@
+<%= simple_form_for [@character, @feat] do |f| %>
+  <%= f.input :title %>
+  <%= f.input :feat_type, label: "Type" %>
+  <%= f.input :prerequisites %>
+  <%= f.input :summary %>
+  <%= f.input :description %>
+  <%= f.input :benefit %>
+  <%= f.input :special %>
+  <%= f.submit "Save Feat" %>
+<% end %>

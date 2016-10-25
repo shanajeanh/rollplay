@@ -50,8 +50,27 @@
     </div>
   <% end %>
 </div>
+
+<div class="feats">
+  <h4>Feats</h4>
+  <% @feats.each do |feat| %>
+    <h5><%= feat.title %></h5>
+    <div>Type: <%= feat.feat_type %></div>
+    <div>Prerequisites: <%= feat.prerequisites %></div>
+    <div>Summary: <%= feat.summary %></div>
+    <div>Description: <%= feat.description %></div>
+    <div>Benefit: <%= feat.benefit %></div>
+    <div>Special: <%= feat.special %></div>
+    <% if @character.user == current_user %>
+      <%= button_to 'Edit Feat', edit_character_feat_path(@character, feat), method: :get %>
+      <%= button_to 'Delete Feat', [@character, feat], method: :delete, data: { confirm: 'You sure?' }  %>
+    <% end %>
+  <% end %>
+</div>
+
 <% if @character.user == current_user %>
   <div class="buttons">
+    <%= button_to 'Add a Feat', new_character_feat_path(@character), method: :get %>
     <%= link_to 'Edit', edit_character_path(@character) %>
     <%= link_to 'Delete', @character, method: :delete, data: { confirm: 'You sure?' }  %>
   </div>

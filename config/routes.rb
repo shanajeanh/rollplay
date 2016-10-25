@@ -9,7 +9,10 @@ Rails.application.routes.draw do
   root to: 'characters#index'
 
   resources :characters do
-    resources :ranks
+    resources :ranks, only: [:index]
+    resources :feats, except: [:show, :index, :delete]
   end
+
+  resources :feats, only: [:delete]
 
 end

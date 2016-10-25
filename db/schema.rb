@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161023190649) do
+ActiveRecord::Schema.define(version: 20161024195347) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,18 @@ ActiveRecord::Schema.define(version: 20161023190649) do
     t.integer  "will",            default: 0
     t.integer  "bab",             default: 0
     t.integer  "user_id",                            null: false
+  end
+
+  create_table "feats", force: :cascade do |t|
+    t.string  "title",         null: false
+    t.string  "feat_type",     null: false
+    t.string  "summary",       null: false
+    t.string  "prerequisites"
+    t.text    "description"
+    t.text    "benefit"
+    t.text    "special"
+    t.integer "character_id"
+    t.index ["character_id"], name: "index_feats_on_character_id", using: :btree
   end
 
   create_table "ranks", force: :cascade do |t|
