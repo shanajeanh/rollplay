@@ -63,6 +63,7 @@
     <div>Special: <%= feat.special %></div>
     <% if @character.user == current_user %>
       <%= button_to 'Edit Feat', edit_character_feat_path(@character, feat), method: :get %>
+      <%= button_to 'Delete Feat', [@character, feat], method: :delete, data: { confirm: 'You sure?' }  %>
     <% end %>
   <% end %>
 </div>

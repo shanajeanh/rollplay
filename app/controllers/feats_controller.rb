@@ -40,10 +40,10 @@ class FeatsController < ApplicationController
 
   def destroy
     authenticate_user!
-    feat = Review.find(params[:id])
+    feat = Feat.find(params[:id])
     @character = feat.character
     feat.destroy
-    flash[:notice] = 'Feat successfully deleted'
+    flash[:notice] = 'Feat deleted'
     redirect_to @character
   end
 
