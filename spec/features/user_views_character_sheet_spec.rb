@@ -22,12 +22,12 @@ feature 'User views character sheet' do
     scenario 'character ability scores and bonuses are displayed' do
       visit character_path(character)
 
-      expect(page).to have_content 'Str: 8 | -1'
-      expect(page).to have_content 'Dex: 14 | 2'
-      expect(page).to have_content 'Con: 10 | 0'
-      expect(page).to have_content 'Int: 17 | 3'
-      expect(page).to have_content 'Wis: 9 | -1'
-      expect(page).to have_content 'Cha: 13 | 1'
+      expect(page).to have_content 'Strength 8 -1'
+      expect(page).to have_content 'Dexterity 14 2'
+      expect(page).to have_content 'Constitution 10 0'
+      expect(page).to have_content 'Intelligence 17 3'
+      expect(page).to have_content 'Wisdom 9 -1'
+      expect(page).to have_content 'Charisma 13 1'
     end
 
     scenario 'character has hit points, armor class, and init visible' do

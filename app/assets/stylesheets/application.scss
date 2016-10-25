@@ -1,11 +1,19 @@
-// @import "*";
+ @import "*";
 // *= require_tree .
 // *= require_self
 // *= require foundation_and_overrides
-@import "./Colors";
+
 body {
-  background-color: $beige;
+  background: $beige;
+  color: $black;
+  padding-left: 75px;
+  padding-right: 75px;
   header {
+    div.title-bar {
+      background: $indigo;
+      padding-left: 75px;
+      padding-right: 75px;
+    }
     a {
       color: $white;
     }

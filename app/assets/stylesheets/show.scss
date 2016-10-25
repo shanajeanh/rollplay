@@ -1,0 +1,27 @@
+.character-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  table {
+    text-align: left;
+  }
+  padding-top: 20px;
+  .basic-info {
+    text-align: center;
+    margin: 0;
+  }
+  .physical {
+    text-align: right;
+    margin-top: 75px;
+  }
+}
+
+.skills {
+  float: left;
+  #skills-header {
+    background: $brown;
+  }
+}
+.feats {
+  float: right;
+}

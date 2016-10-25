@@ -98,12 +98,12 @@ feature 'user can create new characters' do
       click_button 'Save Sheet'
 
       expect(page).to have_content 'Character added successfully'
-      expect(page).to have_content 'Str: 10 | 0'
-      expect(page).to have_content 'Dex: 12 | 1'
-      expect(page).to have_content 'Con: 15 | 2'
-      expect(page).to have_content 'Int: 19 | 4'
-      expect(page).to have_content 'Wis: 13 | 1'
-      expect(page).to have_content 'Cha: 16 | 3'
+      expect(page).to have_content 'Strength 10 0'
+      expect(page).to have_content 'Dexterity 12 1'
+      expect(page).to have_content 'Constitution 15 2'
+      expect(page).to have_content 'Intelligence 19 4'
+      expect(page).to have_content 'Wisdom 13 1'
+      expect(page).to have_content 'Charisma 16 3'
     end
 
     scenario 'the sheet calculates attacks, saves, defence, hp, and init' do
