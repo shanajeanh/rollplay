@@ -24,7 +24,7 @@ feature 'user can edit character sheets' do
       expect(page).to have_content 'Race: Clone'
       expect(page).to have_content 'Appearance: No more zombie eyes'
       expect(page).not_to have_content 'Short black hair, sunglasses'
-      expect(page).to have_content 'Con: 9 | -1'
+      expect(page).to have_content 'Constitution 9 -1'
     end
   end
 

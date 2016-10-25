@@ -1,0 +1,28 @@
+.character-info {
+
+  align-items: start;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+
+  table {
+
+    text-align: left;
+
+  }
+
+  .basic-info {
+    
+    margin: 0;
+    text-align: center;
+
+  }
+
+  .physical {
+
+    margin-top: 75px;
+    text-align: right;
+
+  }
+
+}

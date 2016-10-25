@@ -1,41 +1,68 @@
-<div class="character_info">
-  <div class="basic_info" align = "center">
-    <h1><%= @character.name %></h1>
-    <h3><%= @character.description %></h3>
-    <p>Level: <%= @character.level %> Class: <%= @character.character_class %> Race: <%= @character.character_race %></p>
-  </div>
-  <div class="physical_info" align = "right">Speed: <%= @character.speed %> feet Size: <%= @character.size %> Appearance: <%= @character.appearance %></div>
-  <div class="religion_info" align = "right">Alignment: <%= @character.alignment %> Deity: <%= @character.deity %></div>
+<div class="character-info">
 
-  <div class="ability_scores" align = "left">
-    <h3>Ability | Bonus</h3>
-    <ul>
-      <li>Str: <%= @character.str %> | <%= @character.str_mod %></li>
-      <li>Dex: <%= @character.dex %> | <%= @character.dex_mod %></li>
-      <li>Con: <%= @character.con %> | <%= @character.con_mod %></li>
-      <li>Int: <%= @character.int %> | <%= @character.int_mod %></li>
-      <li>Wis: <%= @character.wis %> | <%= @character.wis_mod %></li>
-      <li>Cha: <%= @character.cha %> | <%= @character.cha_mod %></li>
-    </ul>
+  <div class="small-2 columns ability-scores">
+    <table>
+      <thead>
+        <tr>
+          <th width="15">Ability</th>
+          <th width="10">Score</th>
+          <th width="10">Modifier</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Strength</td>
+          <td><%= @character.str %></td>
+          <td><%= @character.str_mod %></td>
+        </tr>
+        <tr>
+          <td>Dexterity</td>
+          <td><%= @character.dex %></td>
+          <td><%= @character.dex_mod %></td>
+        </tr>
+        <tr>
+          <td>Constitution</td>
+          <td><%= @character.con %></td>
+          <td><%= @character.con_mod %></td>
+        </tr>
+        <tr>
+          <td>Intelligence</td>
+          <td><%= @character.int %></td>
+          <td><%= @character.int_mod %></td>
+        </tr>
+        <tr>
+          <td>Wisdom</td>
+          <td><%= @character.wis %></td>
+          <td><%= @character.wis_mod %></td>
+        </tr>
+        <tr>
+          <td>Charisma</td>
+          <td><%= @character.cha %></td>
+          <td><%= @character.cha_mod %></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  <div class="hp_def_init" align="center">
-    <p>HP: <%= @character.hp %> AC: <%= @character.dex_mod + 10 %> Init: <%= @character.dex_mod %></p>
+
+  <div class="basic-info">
+    <h1><%= @character.name %></h1>
+    <h4><%= @character.description %></h3>
+    <h5>Level: <%= @character.level %> | Class: <%= @character.character_class %> | Race: <%= @character.character_race %></h4>
+    <h6>Appearance: <%= @character.appearance %></h6>
+    <h6>Alignment: <%= @character.alignment %> | Deity: <%= @character.deity %></h6>
   </div>
-  <div class="saves">
-    <div>Fort: <%= @character.con_mod + @character.fort %></div>
-    <div>Ref: <%= @character.dex_mod + @character.ref %></div>
-    <div>Will: <%= @character.wis_mod + @character.will %></div>
-  </div>
-  <br \>
-  <div class="attack">
-    <div>Melee: <%= @character.str_mod + @character.bab %></div>
-    <div>Ranged: <%= @character.dex_mod + @character.bab %></div>
-    <div>CMB: <%= @character.str_mod + @character.bab %></div>
+
+  <div class="physical">
+      <h5>HP: <%= @character.hp %> | AC: <%= @character.dex_mod + 10 %> | Init: <%= @character.dex_mod %></h5>
+      <h5>Fort: <%= @character.con_mod + @character.fort %> | Ref: <%= @character.dex_mod + @character.ref %> | Will: <%= @character.wis_mod + @character.will %></h5>
+      <h5>Speed: <%= @character.speed %> feet | Size: <%= @character.size %></h5>
+      <h5>Melee: <%= @character.str_mod + @character.bab %> | Ranged: <%= @character.dex_mod + @character.bab %> | CMB: <%= @character.str_mod + @character.bab %></h5>
   </div>
 </div>
 
 <div class="skills">
-  <h4>Skills</h4>
+  <div id="skills-header"><h4>Skills</h4></div>
+  <div id="skill-deets">
   <% @skills.each do |skill| %>
     <% rank = @character.rank(skill) %>
     <% class_bonus = 0 %>
@@ -48,6 +75,7 @@
     <div id="total<%= skill.id %>">
       <%= skill.name %> | <%= skill.ability %> | <%= total %>
     </div>
+  </div>
   <% end %>
 </div>
 
@@ -62,15 +90,21 @@
     <div>Benefit: <%= feat.benefit %></div>
     <div>Special: <%= feat.special %></div>
     <% if @character.user == current_user %>
+    <div class="buttons">
       <%= button_to 'Edit Feat', edit_character_feat_path(@character, feat), method: :get %>
       <%= button_to 'Delete Feat', [@character, feat], method: :delete, data: { confirm: 'You sure?' }  %>
+    </div>
     <% end %>
+  <% end %>
+  <% if @character.user == current_user %>
+  <div class="buttons">
+    <%= button_to 'Add a Feat', new_character_feat_path(@character), method: :get %>
+  </div>
   <% end %>
 </div>
 
 <% if @character.user == current_user %>
   <div class="buttons">
-    <%= button_to 'Add a Feat', new_character_feat_path(@character), method: :get %>
     <%= link_to 'Edit', edit_character_path(@character) %>
     <%= link_to 'Delete', @character, method: :delete, data: { confirm: 'You sure?' }  %>
   </div>
