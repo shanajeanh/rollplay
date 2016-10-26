@@ -15,4 +15,12 @@ Rails.application.routes.draw do
 
   resources :feats, only: [:delete]
 
+  Rails.application.routes.draw do
+    namespace :api do
+      namespace :v1 do
+        resources :characters, only: [:index]
+      end
+    end
+  end
+
 end
