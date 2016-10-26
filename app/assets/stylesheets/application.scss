@@ -7,12 +7,24 @@ body {
   background: $beige;
   color: $black;
   padding-left: 75px;
+
   padding-right: 75px;
+
+  h1 {
+    font-family: 'Merienda', cursive;
+  }
+  h2 {
+    font-family: 'Merienda', cursive;
+  }
+
   header {
     div.title-bar {
       background: $indigo;
       padding-left: 75px;
       padding-right: 75px;
+      h3 {
+        font-family: 'Merienda', cursive;
+      }
     }
     a {
       color: $white;
