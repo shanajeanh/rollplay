@@ -1,0 +1,10 @@
+<%= simple_form_for [@character, @spell] do |f| %>
+  <%= f.input :title %>
+  <%= f.input :level %>
+  <%= f.input :summary %>
+  <%= f.input :range %>
+  <%= f.input :duration %>
+  <%= f.input :spell_save %>
+  <%= f.input :description %>
+  <%= f.submit "Save Spell" %>
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161027181413) do
+ActiveRecord::Schema.define(version: 20161027194800) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,13 @@ ActiveRecord::Schema.define(version: 20161027181413) do
     t.boolean  "caster",          default: false
   end
 
+  create_table "class_abilities", force: :cascade do |t|
+    t.string  "title",        null: false
+    t.text    "description",  null: false
+    t.integer "character_id"
+    t.index ["character_id"], name: "index_class_abilities_on_character_id", using: :btree
+  end
+
   create_table "feats", force: :cascade do |t|
     t.string  "title",         null: false
     t.string  "feat_type",     null: false
@@ -67,6 +74,18 @@ ActiveRecord::Schema.define(version: 20161027181413) do
   create_table "skills", force: :cascade do |t|
     t.string "name",    null: false
     t.string "ability", null: false
+  end
+
+  create_table "spells", force: :cascade do |t|
+    t.string  "title",        null: false
+    t.string  "level",        null: false
+    t.string  "summary",      null: false
+    t.string  "range",        null: false
+    t.string  "duration"
+    t.string  "spell_save"
+    t.text    "description"
+    t.integer "character_id"
+    t.index ["character_id"], name: "index_spells_on_character_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|

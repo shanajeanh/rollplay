@@ -9,6 +9,8 @@ class CharactersController < ApplicationController
     @character = Character.find(params[:id])
     @skills = Skill.all
     @feats = @character.feats
+    @spells = @character.spells
+    @class_abilities = @character.class_abilities
   end
 
   def new

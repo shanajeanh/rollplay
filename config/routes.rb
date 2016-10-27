@@ -11,8 +11,10 @@ Rails.application.routes.draw do
   resources :characters do
     resources :ranks, only: [:index]
     resources :feats, except: [:show, :index, :delete]
+    resources :spells, except: [:show, :index, :delete]
+    resources :class_abilities, except: [:show, :index, :delete]
   end
 
   resources :feats, only: [:delete]
-  
+
 end
