@@ -15,7 +15,7 @@ feature 'user can view character skills' do
       character2 = FactoryGirl.create(:character, user: User.last)
       Rank.create(character: character2, skill: skill2, added_ranks: 3)
       visit character_path(character2)
-      click_link 'Edit'
+      click_button 'Edit'
       check 'Bluff'
       click_button 'Save Sheet'
 

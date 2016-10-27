@@ -97,19 +97,26 @@
   <% else %>
     <div class="small-6 columns class_abilities">
   <% end %>
-    <div class="header" id="class-ability-header">
+    <div class="header" id="class-abilities-header">
       <h4>Class Abilities</h4>
     </div>
-    <% @class_abilities.each do |class_ability| %>
-      <h5><%= class_ability.title %></h5>
-      <div>Description: <%= class_ability.description %></div>
+    <div class="hidden" id="class-abilities-deets">
+      <% @class_abilities.each do |class_ability| %>
+        <h5><%= class_ability.title %></h5>
+        <div>Description: <%= class_ability.description %></div>
+        <% if @character.user == current_user %>
+        <div class="buttons">
+          <%= button_to 'Edit Class Ability', edit_character_class_ability_path(@character, class_ability), method: :get %>
+          <%= button_to 'Delete Class Ability', [@character, class_ability], method: :delete, data: { confirm: 'You sure?' }  %>
+        </div>
+        <% end %>
+      <% end %>
       <% if @character.user == current_user %>
       <div class="buttons">
-        <%= button_to 'Edit Class Ability', edit_character_feat_path(@character, feat), method: :get %>
-        <%= button_to 'Delete Feat', [@character, feat], method: :delete, data: { confirm: 'You sure?' }  %>
+        <%= button_to 'Add a Class Ability', new_character_class_ability_path(@character), method: :get %>
       </div>
       <% end %>
-    <% end %>
+    </div>
   </div>
   <% if @character.caster %>
     <div class="small-4 columns feats">

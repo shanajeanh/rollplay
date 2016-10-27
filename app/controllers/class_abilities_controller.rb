@@ -1,4 +1,4 @@
-class ClassAbilityController < ApplicationController
+class ClassAbilitiesController < ApplicationController
   def new
     authenticate_user!
     @character = Character.find(params[:character_id])

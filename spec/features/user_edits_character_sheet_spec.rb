@@ -6,7 +6,7 @@ feature 'user can edit character sheets' do
       login_with_google
       character = FactoryGirl.create(:character, user: User.first)
       visit character_path(character)
-      click_link 'Edit'
+      click_button 'Edit'
 
       expect(current_path).to eq(edit_character_path(character))
     end
@@ -33,7 +33,7 @@ feature 'user can edit character sheets' do
       character = FactoryGirl.create(:character)
       visit character_path(character)
 
-      expect(page).not_to have_link('Edit')
+      expect(page).not_to have_button('Edit')
     end
 
     scenario 'logged-off users cannot edit' do
