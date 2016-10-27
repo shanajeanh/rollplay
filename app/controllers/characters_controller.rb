@@ -77,6 +77,7 @@ class CharactersController < ApplicationController
       :ref,
       :will,
       :bab,
+      :caster,
       ranks_attributes: [
         :id,
         :class_skill,

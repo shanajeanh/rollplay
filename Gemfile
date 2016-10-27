@@ -9,7 +9,8 @@ gem 'foundation-rails'
 gem 'font-awesome-sass'
 gem "omniauth-google-oauth2", "~> 0.4.1"
 gem 'simple_form'
-gem "active_model_serializers"
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
 
 group :development, :test do
   gem 'pry-rails'

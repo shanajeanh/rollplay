@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161024195347) do
+ActiveRecord::Schema.define(version: 20161027181413) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20161024195347) do
     t.integer  "will",            default: 0
     t.integer  "bab",             default: 0
     t.integer  "user_id",                            null: false
+    t.boolean  "caster",          default: false
   end
 
   create_table "feats", force: :cascade do |t|

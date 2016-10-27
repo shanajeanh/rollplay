@@ -60,45 +60,112 @@
   </div>
 </div>
 
-<div id="app"></div>
 
-<ul class="accordion" data-accordion>
-  <li class="accordion-navigation">
-    <a href="#panel1a">Skills</a>
-    <div id="panel1a" class="content active">
-      <% @skills.each do |skill| %>
-        <% rank = @character.rank(skill) %>
-        <% class_bonus = 0 %>
-        <% ability = skill.ability_mod(@character) %>
-        <% ranks = rank.added_ranks.to_i %>
-        <% if rank.class_skill && ranks > 0 %>
-          <% class_bonus = 3 %>
-        <% end %>
-        <% total = ranks + ability + class_bonus %>
-        <div id="total<%= skill.id %>">
-          <%= skill.name %> | <%= skill.ability %> | <%= total %>
-        </div>
+<!-- <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          <h1>Skills</h1>
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Collapsible Group Item #2
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingThree">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Collapsible Group Item #3
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="row">
+  <div class="small-6 columns skills">
+    <div class="header">
+      <h4>Skills</h4>
+    </div>
+    <div class="hidden" id="skills-deets">
+    <% @skills.each do |skill| %>
+      <% rank = @character.rank(skill) %>
+      <% class_bonus = 0 %>
+      <% ability = skill.ability_mod(@character) %>
+      <% ranks = rank.added_ranks.to_i %>
+      <% if rank.class_skill && ranks > 0 %>
+        <% class_bonus = 3 %>
+      <% end %>
+      <% total = ranks + ability + class_bonus %>
+      <div id="total<%= skill.id %>">
+        <%= skill.name %> | <%= skill.ability %> | <%= total %>
       </div>
       <% end %>
     </div>
-  </li>
-  <li class="accordion-navigation">
-    <a href="#panel2a">Feats</a>
-    <div id="panel2a" class="content">
-      <% @feats.each do |feat| %>
-        <h5><%= feat.title %></h5>
-        <div>Type: <%= feat.feat_type %></div>
-        <div>Prerequisites: <%= feat.prerequisites %></div>
-        <div>Summary: <%= feat.summary %></div>
-        <div>Description: <%= feat.description %></div>
-        <div>Benefit: <%= feat.benefit %></div>
-        <div>Special: <%= feat.special %></div>
-        <% if @character.user == current_user %>
-        <div class="buttons">
-          <%= button_to 'Edit Feat', edit_character_feat_path(@character, feat), method: :get %>
-          <%= button_to 'Delete Feat', [@character, feat], method: :delete, data: { confirm: 'You sure?' }  %>
-        </div>
-        <% end %>
+  </div>
+  <div class="small-6 columns weapons">
+    <div class="header">
+      <h4>Weapons</h4>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <% if @character.caster %>
+    <div class="small-4 columns class_abilities">
+  <% else %>
+    <div class="small-6 columns class_abilities">
+  <% end %>
+    <div class="header">
+      <h4>Class Abilities</h4>
+    </div>
+  </div>
+  <% if @character.caster %>
+    <div class="small-4 columns feats">
+  <% else %>
+    <div class="small-6 columns feats">
+  <% end %>
+    <div class="header">
+      <h4>Feats</h4>
+    </div>
+    <div class="hidden" id="feats-deets"><% @feats.each do |feat| %>
+      <h5><%= feat.title %></h5>
+      <div>Type: <%= feat.feat_type %></div>
+      <div>Prerequisites: <%= feat.prerequisites %></div>
+      <div>Summary: <%= feat.summary %></div>
+      <div>Description: <%= feat.description %></div>
+      <div>Benefit: <%= feat.benefit %></div>
+      <div>Special: <%= feat.special %></div>
+      <% if @character.user == current_user %>
+      <div class="buttons">
+        <%= button_to 'Edit Feat', edit_character_feat_path(@character, feat), method: :get %>
+        <%= button_to 'Delete Feat', [@character, feat], method: :delete, data: { confirm: 'You sure?' }  %>
+      </div>
+      <% end %>
       <% end %>
       <% if @character.user == current_user %>
       <div class="buttons">
@@ -106,8 +173,13 @@
       </div>
       <% end %>
     </div>
-  </li>
-</ul>
+  </div>
+  <% if @character.caster %>
+  <div class="small-4 columns spells">
+    <div class="header"><h4>Spells</h4></div>
+  </div>
+  <% end %>
+</div>
 
 <% if @character.user == current_user %>
   <div class="buttons">
