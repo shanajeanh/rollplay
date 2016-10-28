@@ -32,12 +32,12 @@ feature 'user can add spells' do
       character = FactoryGirl.create(:character, user: User.first, caster: true)
       visit new_character_spell_path(character)
       fill_in 'Title', with: 'Speak Truth'
-      fill_in "Level", with: 4
-      fill_in "Summary", with: 'Characters effected can only speak the truth'
-      fill_in "Range", with: 'Area'
-      fill_in "Duration", with: '1 minute per round'
-      fill_in "Spell save", with: '15'
-      fill_in "Description", with: 'Orb of truth telling'
+      fill_in 'Level', with: 4
+      fill_in 'Summary', with: 'Characters effected can only speak the truth'
+      fill_in 'Range', with: 'Area'
+      fill_in 'Duration', with: '1 minute per round'
+      fill_in 'Spell save', with: '15'
+      fill_in 'Description', with: 'Orb of truth telling'
       click_button 'Save Spell'
 
       expect(page).to have_content 'Speak Truth'
