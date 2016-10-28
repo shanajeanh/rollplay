@@ -88,6 +88,35 @@
     <div class="header" id="weapons-header">
       <h4>Weapons</h4>
     </div>
+    <div class="hidden" id="weapons-deets">
+      <% @weapons.each do |weapon| %>
+        <h5><%= weapon.name %></h5>
+        <% ability_mod = @character.str_mod %>
+        <% if weapon.use_dex %>
+          <% ability_mod = @character.dex_mod %>
+        <% end %>
+        <div>
+          Attack: <%= weapon.bonus + @character.bab + ability_mod %> | Damage: <%= weapon.damage %> | Crit <%= weapon.crit %>
+        </div>
+        <div>
+          Range: <%= weapon.range %> | Size: <%= weapon.size %> | Damage Type: <%= weapon.damage_type %>
+        </div>
+        <div>
+          Special: <%= weapon.special %>
+        </div>
+        <% if @character.user == current_user %>
+        <div class="buttons">
+          <%= button_to 'Edit Weapon', edit_character_weapon_path(@character, weapon), method: :get %>
+          <%= button_to 'Delete Weapon', [@character, weapon], method: :delete, data: { confirm: 'You sure?' }  %>
+        </div>
+        <% end %>
+      <% end %>
+      <% if @character.user == current_user %>
+      <div class="buttons">
+        <%= button_to 'Add a Weapon', new_character_weapon_path(@character), method: :get %>
+      </div>
+      <% end %>
+    </div>
   </div>
 </div>
 

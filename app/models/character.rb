@@ -3,6 +3,7 @@ class Character < ActiveRecord::Base
   has_many :feats
   has_many :spells
   has_many :class_abilities
+  has_many :weapons
   has_many :ranks
   has_many :skills, through: :ranks
 

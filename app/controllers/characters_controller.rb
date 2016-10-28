@@ -11,6 +11,7 @@ class CharactersController < ApplicationController
     @feats = @character.feats
     @spells = @character.spells
     @class_abilities = @character.class_abilities
+    @weapons = @character.weapons
   end
 
   def new

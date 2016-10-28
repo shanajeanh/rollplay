@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :feats, except: [:show, :index, :delete]
     resources :spells, except: [:show, :index, :delete]
     resources :class_abilities, except: [:show, :index, :delete]
+    resources :weapons, except: [:show, :index, :delete]
   end
 
   resources :feats, only: [:delete]

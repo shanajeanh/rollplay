@@ -19,5 +19,4 @@ $(document).ready(function() {
   $("#spells-header").click(function() {
     $("#spells-deets").toggle();
   });
-
 })

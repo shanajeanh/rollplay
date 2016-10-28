@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161027194800) do
+ActiveRecord::Schema.define(version: 20161028155319) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,6 +96,20 @@ ActiveRecord::Schema.define(version: 20161027194800) do
     t.datetime "oauth_expires_at"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+  end
+
+  create_table "weapons", force: :cascade do |t|
+    t.string  "name",                            null: false
+    t.string  "damage",                          null: false
+    t.integer "bonus",        default: 0
+    t.string  "crit"
+    t.string  "range"
+    t.string  "size",         default: "Medium"
+    t.string  "damage_type"
+    t.text    "special"
+    t.boolean "use_dex",      default: false
+    t.integer "character_id"
+    t.index ["character_id"], name: "index_weapons_on_character_id", using: :btree
   end
 
 end

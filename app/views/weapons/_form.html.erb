@@ -1,0 +1,12 @@
+<%= simple_form_for [@character, @weapon] do |f| %>
+  <%= f.input :name %>
+  <%= f.input :damage, label: "Damage Roll" %>
+  <%= f.input :bonus %>
+  <%= f.input :crit %>
+  <%= f.input :range %>
+  <%= f.input :size %>
+  <%= f.input :damage_type %>
+  <%= f.input :special %>
+  <%= f.input :use_dex, label: "Use Dex" %>
+  <%= f.submit "Save Weapon" %>
+<% end %>
