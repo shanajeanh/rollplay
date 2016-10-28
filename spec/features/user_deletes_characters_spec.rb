@@ -6,7 +6,7 @@ feature 'user can delete their character sheets' do
       login_with_google
       character = FactoryGirl.create(:character, user: User.first)
       visit character_path(character)
-      click_button 'Delete'
+      click_button "Delete"
 
       expect(page).to have_content 'Character deleted'
       expect(page).not_to have_content 'Georgia Mason'
