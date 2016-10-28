@@ -57,55 +57,159 @@
       <h5>Fort: <%= @character.con_mod + @character.fort %> | Ref: <%= @character.dex_mod + @character.ref %> | Will: <%= @character.wis_mod + @character.will %></h5>
       <h5>Speed: <%= @character.speed %> feet | Size: <%= @character.size %></h5>
       <h5>Melee: <%= @character.str_mod + @character.bab %> | Ranged: <%= @character.dex_mod + @character.bab %> | CMB: <%= @character.str_mod + @character.bab %></h5>
+      <% if @character.caster %>
+        <h5><strong>Caster</strong></h5>
+      <% end %>
   </div>
 </div>
 
-<div class="skills">
-  <div id="skills-header"><h4>Skills</h4></div>
-  <div id="skill-deets">
-  <% @skills.each do |skill| %>
-    <% rank = @character.rank(skill) %>
-    <% class_bonus = 0 %>
-    <% ability = skill.ability_mod(@character) %>
-    <% ranks = rank.added_ranks.to_i %>
-    <% if rank.class_skill && ranks > 0 %>
-      <% class_bonus = 3 %>
-    <% end %>
-    <% total = ranks + ability + class_bonus %>
-    <div id="total<%= skill.id %>">
-      <%= skill.name %> | <%= skill.ability %> | <%= total %>
+<div class="row">
+  <div class="small-6 columns skills">
+    <div class="header" id="skills-header">
+      <h4>Skills</h4>
+    </div>
+    <div class="hidden" id="skills-deets">
+    <% @skills.each do |skill| %>
+      <% rank = @character.rank(skill) %>
+      <% class_bonus = 0 %>
+      <% ability = skill.ability_mod(@character) %>
+      <% ranks = rank.added_ranks.to_i %>
+      <% if rank.class_skill && ranks > 0 %>
+        <% class_bonus = 3 %>
+      <% end %>
+      <% total = ranks + ability + class_bonus %>
+      <div id="total<%= skill.id %>">
+        <%= skill.name %> | <%= skill.ability %> | <%= total %>
+      </div>
+      <% end %>
     </div>
   </div>
-  <% end %>
+  <div class="small-6 columns weapons">
+    <div class="header" id="weapons-header">
+      <h4>Weapons</h4>
+    </div>
+    <div class="hidden" id="weapons-deets">
+      <% @weapons.each do |weapon| %>
+        <h5><%= weapon.name %></h5>
+        <% ability_mod = @character.str_mod %>
+        <% if weapon.use_dex %>
+          <% ability_mod = @character.dex_mod %>
+        <% end %>
+        <div>
+          Attack: <%= weapon.bonus + @character.bab + ability_mod %> | Damage: <%= weapon.damage %> | Crit <%= weapon.crit %>
+        </div>
+        <div>
+          Range: <%= weapon.range %> | Size: <%= weapon.size %> | Damage Type: <%= weapon.damage_type %>
+        </div>
+        <div>
+          Special: <%= weapon.special %>
+        </div>
+        <% if @character.user == current_user %>
+        <div class="buttons">
+          <%= button_to 'Edit Weapon', edit_character_weapon_path(@character, weapon), method: :get %>
+          <%= button_to 'Delete Weapon', [@character, weapon], method: :delete, data: { confirm: 'You sure?' }  %>
+        </div>
+        <% end %>
+      <% end %>
+      <% if @character.user == current_user %>
+      <div class="buttons">
+        <%= button_to 'Add a Weapon', new_character_weapon_path(@character), method: :get %>
+      </div>
+      <% end %>
+    </div>
+  </div>
 </div>
 
-<div class="feats">
-  <h4>Feats</h4>
-  <% @feats.each do |feat| %>
-    <h5><%= feat.title %></h5>
-    <div>Type: <%= feat.feat_type %></div>
-    <div>Prerequisites: <%= feat.prerequisites %></div>
-    <div>Summary: <%= feat.summary %></div>
-    <div>Description: <%= feat.description %></div>
-    <div>Benefit: <%= feat.benefit %></div>
-    <div>Special: <%= feat.special %></div>
-    <% if @character.user == current_user %>
-    <div class="buttons">
-      <%= button_to 'Edit Feat', edit_character_feat_path(@character, feat), method: :get %>
-      <%= button_to 'Delete Feat', [@character, feat], method: :delete, data: { confirm: 'You sure?' }  %>
-    </div>
-    <% end %>
+<div class="row">
+  <% if @character.caster %>
+    <div class="small-4 columns class_abilities">
+  <% else %>
+    <div class="small-6 columns class_abilities">
   <% end %>
-  <% if @character.user == current_user %>
-  <div class="buttons">
-    <%= button_to 'Add a Feat', new_character_feat_path(@character), method: :get %>
+    <div class="header" id="class-abilities-header">
+      <h4>Class Abilities</h4>
+    </div>
+    <div class="hidden" id="class-abilities-deets">
+      <% @class_abilities.each do |class_ability| %>
+        <h5><%= class_ability.title %></h5>
+        <div>Description: <%= class_ability.description %></div>
+        <% if @character.user == current_user %>
+        <div class="buttons">
+          <%= button_to 'Edit Class Ability', edit_character_class_ability_path(@character, class_ability), method: :get %>
+          <%= button_to 'Delete Class Ability', [@character, class_ability], method: :delete, data: { confirm: 'You sure?' }  %>
+        </div>
+        <% end %>
+      <% end %>
+      <% if @character.user == current_user %>
+      <div class="buttons">
+        <%= button_to 'Add a Class Ability', new_character_class_ability_path(@character), method: :get %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <% if @character.caster %>
+    <div class="small-4 columns feats">
+  <% else %>
+    <div class="small-6 columns feats">
+  <% end %>
+    <div class="header" id="feats-header">
+      <h4>Feats</h4>
+    </div>
+    <div class="hidden" id="feats-deets">
+      <% @feats.each do |feat| %>
+        <h5><%= feat.title %></h5>
+        <div>Type: <%= feat.feat_type %></div>
+        <div>Prerequisites: <%= feat.prerequisites %></div>
+        <div>Summary: <%= feat.summary %></div>
+        <div>Description: <%= feat.description %></div>
+        <div>Benefit: <%= feat.benefit %></div>
+        <div>Special: <%= feat.special %></div>
+        <% if @character.user == current_user %>
+        <div class="buttons">
+          <%= button_to 'Edit Feat', edit_character_feat_path(@character, feat), method: :get %>
+          <%= button_to 'Delete Feat', [@character, feat], method: :delete, data: { confirm: 'You sure?' }  %>
+        </div>
+        <% end %>
+      <% end %>
+      <% if @character.user == current_user %>
+      <div class="buttons">
+        <%= button_to 'Add a Feat', new_character_feat_path(@character), method: :get %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <% if @character.caster %>
+  <div class="small-4 columns spells">
+    <div class="header" id="spells-header">
+      <h4>Spells</h4>
+    </div>
+    <div class="hidden" id="spells-deets">
+      <% @spells.each do |spell| %>
+      <h5><%= spell.title %></h5>
+      <div>Level: <%= spell.level %></div>
+      <div>Summary: <%= spell.summary %></div>
+      <div>Range: <%= spell.range %></div>
+      <div>Duration: <%= spell.duration %></div>
+      <div>Save: <%= spell.spell_save %></div>
+      <div>Description: <%= spell.description %></div>
+      <div class="buttons">
+        <%= button_to 'Edit Spell', edit_character_spell_path(@character, spell), method: :get %>
+        <%= button_to 'Delete Spell', [@character, spell], method: :delete, data: { confirm: 'You sure?' }  %>
+      </div>
+      <% end %>
+      <% if @character.user == current_user %>
+      <div class="buttons">
+        <%= button_to 'Add a Spell', new_character_spell_path(@character), method: :get %>
+      </div>
+      <% end %>
+    </div>
   </div>
   <% end %>
 </div>
 
 <% if @character.user == current_user %>
-  <div class="buttons">
-    <%= link_to 'Edit', edit_character_path(@character) %>
-    <%= link_to 'Delete', @character, method: :delete, data: { confirm: 'You sure?' }  %>
+  <div class="buttons" id="edit-delete">
+    <%= button_to 'Edit', edit_character_path(@character), method: :get %>
+    <%= button_to 'Delete', @character, method: :delete, data: { confirm: 'You sure?' }  %>
   </div>
 <% end %>

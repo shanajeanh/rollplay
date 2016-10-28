@@ -60,6 +60,9 @@
     <%= f.label :bab, "Base Attack Bonus" %>
     <%= f.text_field :bab %>
     <br \>
+    <%= f.check_box :caster %>
+    <%= f.label :caster %>
+    <br \>
     <%= f.fields_for :ranks do |ff| %>
       <div class="skills_form">
         <%= ff.check_box :class_skill %>

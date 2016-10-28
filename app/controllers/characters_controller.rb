@@ -9,6 +9,9 @@ class CharactersController < ApplicationController
     @character = Character.find(params[:id])
     @skills = Skill.all
     @feats = @character.feats
+    @spells = @character.spells
+    @class_abilities = @character.class_abilities
+    @weapons = @character.weapons
   end
 
   def new
@@ -77,6 +80,7 @@ class CharactersController < ApplicationController
       :ref,
       :will,
       :bab,
+      :caster,
       ranks_attributes: [
         :id,
         :class_skill,
