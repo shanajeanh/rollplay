@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
   def current_user
     user = session[:user_id]
-    if user > User.last.id
+    if !user.nil? && user.to_i > User.last.id
       user = nil
     end
     @current_user ||= User.find(user) if user
