@@ -12,3 +12,7 @@
 <% end %>
 <%= link_to 'Create a Character Sheet', new_character_path %>
 </div>
+
+<% if logged_in? %>
+    <%= button_to 'Delete Account', current_user, method: :delete, data: { confirm: 'You sure? All characters will be deleted too' }  %>
+<% end %>
