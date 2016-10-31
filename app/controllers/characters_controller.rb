@@ -27,7 +27,7 @@ class CharactersController < ApplicationController
       flash[:notice] = 'Character added successfully'
       redirect_to @character
     else
-      flash[:notice] = flash[:notice] = @character.errors.full_messages.join(', ')
+      flash[:notice] = @character.errors.full_messages.join(', ')
       render :new
     end
   end
@@ -51,6 +51,7 @@ class CharactersController < ApplicationController
   end
 
   def destroy
+    authenticate_user!
     Character.find(params[:id]).destroy
     flash[:notice] = 'Character deleted'
     redirect_to root_path

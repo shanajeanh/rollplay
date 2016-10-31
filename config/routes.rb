@@ -8,14 +8,13 @@ Rails.application.routes.draw do
 
   root to: 'characters#index'
 
+  resources :users, only: [:destroy]
+
   resources :characters do
     resources :ranks, only: [:index]
-    resources :feats, except: [:show, :index, :delete]
-    resources :spells, except: [:show, :index, :delete]
-    resources :class_abilities, except: [:show, :index, :delete]
-    resources :weapons, except: [:show, :index, :delete]
+    resources :feats, except: [:show, :index]
+    resources :spells, except: [:show, :index]
+    resources :class_abilities, except: [:show, :index]
+    resources :weapons, except: [:show, :index]
   end
-
-  resources :feats, only: [:delete]
-
 end

@@ -1,10 +1,10 @@
 class Character < ActiveRecord::Base
   belongs_to :user
-  has_many :feats
-  has_many :spells
-  has_many :class_abilities
-  has_many :weapons
-  has_many :ranks
+  has_many :feats, dependent: :destroy
+  has_many :spells, dependent: :destroy
+  has_many :class_abilities, dependent: :destroy
+  has_many :weapons, dependent: :destroy
+  has_many :ranks, dependent: :destroy
   has_many :skills, through: :ranks
 
   accepts_nested_attributes_for :ranks
