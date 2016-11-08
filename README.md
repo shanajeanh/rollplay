@@ -1,7 +1,7 @@
 # Rollplay
-![Build Status](https://codeship.com/projects/b8c82d30-6c97-0134-5074-2643ab6f7762/status?branch=master)
+![Build Status](https://codeship.com/projects/177283)
 ![Code Climate](https://codeclimate.com/github/shanajeanh/rollplay.png)
-![Coverage Status](https://coveralls.io/repos/shanajeanh/rollplay/badge.png)
+[![Coverage Status](https://coveralls.io/repos/github/shanajeanh/rollplay/badge.svg?branch=master)](https://coveralls.io/github/shanajeanh/rollplay?branch=master)
 
 A character sheet app for Paizo Games' *Pathfinder*. Users can log in with Google and then create a character sheet. Once the basic sheet is added, they can edit the sheet to add skills or update stats. They can also add spells, feats, class abilities, and weapons, or edit and delete anything. You can only view a list of your own characters, but individual character sheets are viewable by anyone, so you can link them to game masters or friends if you so choose.
 
